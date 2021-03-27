@@ -10,12 +10,13 @@ class Fab extends StatelessWidget {
     final sampleCubit = BlocProvider.of<SampleCubit>(context);
     void onSelectText() {
       sampleCubit.updatedProperty(
-          TextMode()); // This will start the TextMode with selectedProperty as none by default.
+        TextMode(),
+      ); // This will start the TextMode with selectedProperty as none by default.
 
-      // Uncomment below to attempt to start edit mode as soon as bottomsheet is opened. It works but the function [editSomeText] is not called.
-      // final textMode = sampleCubit.state.selectedMode as TextMode;
-      // final updatedTextMode = textMode.copyWith(TextProperty.editText);
-      // sampleCubit.updatedProperty(updatedTextMode);
+      // Start edit mode as soon as bottomsheet is opened. It works but the function [editSomeText] is not called.
+      final textMode = sampleCubit.state.selectedMode as TextMode;
+      final updatedTextMode = textMode.copyWith(TextProperty.editText);
+      sampleCubit.updatedProperty(updatedTextMode);
 
       Navigator.pop(context);
     }
